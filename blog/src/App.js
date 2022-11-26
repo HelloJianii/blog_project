@@ -7,15 +7,10 @@ import "./App.css";
 function App() {
   let [글제목, 글제목변경] = useState(["남자코트 추천", "강남 우동맛집", "파이썬 독학"]);
   let [good, setGood] = useState(0);
+  let [modal, setModal] = useState(false);
 
   function 함수() {
     setGood(good + 1);
-  }
-
-  function handleClick() {
-    let copy = [...글제목];
-    copy[0] = "여자코트 추천";
-    글제목변경(copy);
   }
 
   return (
@@ -38,11 +33,17 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{글제목[2]}</h4>
+        <h4
+          onClick={() => {
+            modal == true ? setModal(false) : setModal(true);
+          }}
+        >
+          {글제목[2]}
+        </h4>
         <p>2월 17일 발행</p>
       </div>
 
-      <Modal />
+      {modal == true ? <Modal /> : null}
     </div>
   );
 }
